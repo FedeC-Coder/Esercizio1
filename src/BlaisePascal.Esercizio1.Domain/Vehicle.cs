@@ -21,9 +21,6 @@ METODI
 */
     public class Vehicle
     {
-        // Attributo
-        private int _id;
-
         // Properietà
         public string plate { get; private set; }
         public int actualKms { get; private set; }
@@ -31,9 +28,7 @@ METODI
         public double fuelPercentage { get; private set; }
 
         // Costruttore
-        public Vehicle(int idV, string plateV, int actualKmsV, double dailyRateV, double fuelPercentageV) {
-            require(_id >= 0);
-            _id = idV;
+        public Vehicle(string plateV, int actualKmsV, double dailyRateV, double fuelPercentageV) {
             require(plateV.Length == 7);
             require(validatePlate(plateV));
             plate = plateV.ToUpper();
@@ -44,6 +39,12 @@ METODI
             require(fuelPercentageV >= 0);
             fuelPercentage = fuelPercentageV;
 
+        }
+
+        public Vehicle(string plateV)
+        {
+            require(plateV.Length == 7);
+            require(validatePlate(plateV));
         }
 
         // Require (aggiuntivo)
