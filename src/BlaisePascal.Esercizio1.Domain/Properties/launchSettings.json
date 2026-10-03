@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "BlaisePascal.Esercizio1.Domain": {
+      "commandName": "Project"
+    },
+    "Profilo 1": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\federico.carmonini\\source\\repos\\Esercizio1\\src\\BlaisePascal.Esercizio1.Console\\Class1.cs"
+    }
+  }
+}
