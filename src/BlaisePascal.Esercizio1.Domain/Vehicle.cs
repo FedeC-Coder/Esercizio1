@@ -26,7 +26,10 @@ METODI
         private double _dailyRate;
         private double _fuelPercentage;
         public string plate { get; private set; }
-        public int actualKms { get { return _actualKm; } private set; }
+        public int actualKms { get { return _actualKm; } private set {
+                require(value >= 0);
+                _actualKm = value;
+            } }
         public double dailyRate { get { return _dailyRate;  } private set; }
         public double fuelPercentage { get { return _fuelPercentage; } private set; }
 
@@ -35,7 +38,7 @@ METODI
             require(plateV.Length == 7);
             require(validatePlate(plateV));
             plate = plateV.ToUpper();
-            require(actualKmsV >= 0);
+            
             actualKms = actualKmsV;
             require(dailyRateV >= 0);
             dailyRate = dailyRateV;
