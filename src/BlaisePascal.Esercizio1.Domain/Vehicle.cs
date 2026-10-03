@@ -22,10 +22,13 @@ METODI
     public class Vehicle
     {
         // Properietà
+        private int _actualKm;
+        private double _dailyRate;
+        private double _fuelPercentage;
         public string plate { get; private set; }
-        public int actualKms { get; private set; }
-        public double dailyRate { get; private set; }
-        public double fuelPercentage { get; private set; }
+        public int actualKms { get { return _actualKm; } private set; }
+        public double dailyRate { get { return _dailyRate;  } private set; }
+        public double fuelPercentage { get { return _fuelPercentage; } private set; }
 
         // Costruttore
         public Vehicle(string plateV, int actualKmsV, double dailyRateV, double fuelPercentageV) {
