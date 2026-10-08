@@ -14,7 +14,7 @@ namespace BlaisePascal.Esercizio1.Domain
     /// Il Modello deve:                                                                                                # Fuzioni e validazioni
     /// Impedire la creazione di veicoli con valori incoerenti(es.targa non valida, chilometri o tariffe negative).     √
     /// Permetta di registrare i viaggi effettuati, incrementando il chilometraggio e riducendo il carburante residuo.  √
-    /// Consentire di effettuare il rifornimento fino a un massimo del 100 % della capienza del serbatoio.
+    /// Consentire di effettuare il rifornimento fino a un massimo del 100 % della capienza del serbatoio.              √
     /// </summary>
     public class Vehicle
     {
