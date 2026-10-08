@@ -92,6 +92,7 @@ namespace BlaisePascal.Esercizio1.Domain
         // Registra i dati di viaggio
         public void recordDataTrip(int kmDone, double fuelPercentageUsed)
         {
+            require(kmDone > 0 && fuelPercentageUsed > 0);
             ActualKms += kmDone;
             FuelPercentage -= fuelPercentageUsed;
         }
