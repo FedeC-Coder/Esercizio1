@@ -5,52 +5,73 @@ using System.Text.RegularExpressions;
 
 namespace BlaisePascal.Esercizio1.Domain
 {
-    /* Veicolo
-ATTRIBUTI O PROPRIETA' 
-    ID
-    TARGA
-    KM ATTUALE
-    TARIFFA GIORNALIERA
-    LIVELLO DI CARBURANTE ATTUALE DI PERCENTUALE
-
-METODI
-    REGISTRARE DATI VIAGGIO
-        \- AGGIORNARE I DATI DEL VEICOLO
-    FARE RIFORNIMENTO
-        \- AUMENTO DI UNA CERTA PERCENTUALE
-*/
+    /// <summary>
+    /// Ogni veicolo è caratterizzato da:                                                                               # Attributi e proprietà
+    /// Una targa(LicensePlate)                                                                                         √
+    /// Il chilometraggio attuale(OdometerKm)                                                                           √
+    /// La tariffa giornaliera di noleggio(DailyRate)                                                                   √
+    /// Il livello percentuale di carburante nel serbatoio(FuelLevelPercentage)                                         √
+    /// Il Modello deve:                                                                                                # Fuzioni e validazioni
+    /// Impedire la creazione di veicoli con valori incoerenti(es.targa non valida, chilometri o tariffe negative).     √
+    /// Permetta di registrare i viaggi effettuati, incrementando il chilometraggio e riducendo il carburante residuo.  √
+    /// Consentire di effettuare il rifornimento fino a un massimo del 100 % della capienza del serbatoio.
+    /// </summary>
     public class Vehicle
     {
-        // Properietà
+        // Attributi interni
         private int _actualKm;
         private double _dailyRate;
         private double _fuelPercentage;
-        public string plate { get; private set; }
-        public int actualKms { get { return _actualKm; } private set {
+
+        // Proprietà
+        public string Plate { 
+            get;
+            private set {
+                require(value.Length == 7);
+                require(validatePlate(value));
+            } 
+        }
+        public int ActualKms { 
+            get { return _actualKm; } 
+            private set {
                 require(value >= 0);
                 _actualKm = value;
-            } }
-        public double dailyRate { get { return _dailyRate;  } private set; }
-        public double fuelPercentage { get { return _fuelPercentage; } private set; }
+            } 
+        }
 
-        // Costruttore
-        public Vehicle(string plateV, int actualKmsV, double dailyRateV, double fuelPercentageV) {
-            require(plateV.Length == 7);
-            require(validatePlate(plateV));
-            plate = plateV.ToUpper();
-            
-            actualKms = actualKmsV;
-            require(dailyRateV >= 0);
-            dailyRate = dailyRateV;
-            require(fuelPercentageV >= 0);
-            fuelPercentage = fuelPercentageV;
+        public double DailyRate
+        {
+            get { return _dailyRate; }
+            private set
+            {
+                require(value >= 0);
+                _dailyRate = value;
+            }
+        }
+
+        public double FuelPercentage
+        {
+            get { return _fuelPercentage; }
+            private set
+            {
+                require(value >= 0);
+                _fuelPercentage = value;
+            }
+        }
+
+        // Costruttore 1
+        public Vehicle(string plate, int actualKms, double dailyRate, double fuelPercentage) {
+            Plate = plate.ToUpper();
+            ActualKms = actualKms;
+            DailyRate = dailyRate;
+            FuelPercentage = fuelPercentage;
 
         }
 
-        public Vehicle(string plateV)
+        // Costruttore 2 (overload)
+        public Vehicle(string plate)
         {
-            require(plateV.Length == 7);
-            require(validatePlate(plateV));
+            Plate = plate.ToUpper();
         }
 
         // Require (aggiuntivo)
@@ -69,21 +90,17 @@ METODI
         }
 
         // Registra i dati di viaggio
-        public void recordDataTrip(int kms, double tripDailyRate, double tripFuelPercentage)
+        public void recordDataTrip(int kmDone, double fuelPercentageUsed)
         {
-            require(kms >= 0);
-            actualKms = kms;
-            require(tripDailyRate >= 0);
-            dailyRate = tripDailyRate;
-            require(tripFuelPercentage >= 0);
-            fuelPercentage = tripFuelPercentage;
+            ActualKms += kmDone;
+            FuelPercentage -= fuelPercentageUsed;
         }
 
         // Funzione per il rifornmento
         public void refill(int toPercentage) {
-            require(fuelPercentage < toPercentage);
+            require(FuelPercentage < toPercentage);
             require(toPercentage >= 0 && toPercentage<=100);
-            fuelPercentage = toPercentage;
+            FuelPercentage = toPercentage;
         }
     }
 }
