@@ -59,21 +59,20 @@ namespace BlaisePascal.Esercizio1.Domain
             }
         }
 
-        // Costruttore 1
-        public Vehicle(string plate, int actualKms, double dailyRate, double fuelPercentage) {
-            Plate = plate.ToUpper();
-            ActualKms = actualKms;
-            DailyRate = dailyRate;
-            FuelPercentage = fuelPercentage;
-
-        }
-
-        // Costruttore 2 (overload)
+        // Costruttore 1 
         public Vehicle(string plate)
         {
             Plate = plate.ToUpper();
         }
 
+        // Costruttore 2 (overload)
+        public Vehicle(string plate, int actualKms, double dailyRate, double fuelPercentage) : this(plate) {
+            ActualKms = actualKms;
+            DailyRate = dailyRate;
+            FuelPercentage = fuelPercentage;
+
+        }
+        
         // Require (aggiuntivo)
         private void require(bool value)
         {
