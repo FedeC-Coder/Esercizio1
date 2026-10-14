@@ -31,6 +31,7 @@ namespace BlaisePascal.Esercizio1.Domain
                 require(validatePlate(value));
             } 
         }
+        
         public int ActualKms { 
             get { return _actualKm; } 
             private set {
