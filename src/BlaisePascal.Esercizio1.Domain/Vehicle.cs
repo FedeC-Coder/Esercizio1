@@ -65,9 +65,16 @@ namespace BlaisePascal.Esercizio1.Domain
             Plate = plate.ToUpper();
         }
 
-        // Costruttore 2 (overload)
-        public Vehicle(string plate, int actualKms, double dailyRate, double fuelPercentage) : this(plate) {
+         // Costruttore 3 (overload)
+        public Vehicle(string plate, int actualKms) : this(plate) {
             ActualKms = actualKms;
+            DailyRate = dailyRate;
+            FuelPercentage = fuelPercentage;
+
+        }
+        
+        // Costruttore 2 (overload)
+        public Vehicle(string plate, int actualKms, double dailyRate, double fuelPercentage) : this(plate, actualKms) {
             DailyRate = dailyRate;
             FuelPercentage = fuelPercentage;
 
