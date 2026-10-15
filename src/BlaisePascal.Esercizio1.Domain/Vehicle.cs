@@ -55,11 +55,23 @@ namespace BlaisePascal.Esercizio1.Domain
             get { return _fuelPercentage; }
             private set
             {
-                require(value >= 0);
+                require(value >= 0 && value<=MaxFuelPercentage);
                 _fuelPercentage = value;
             }
         }
 
+        public int MaxFuelPercentage
+        {
+            get
+            {
+                return field;
+            }
+            set
+            {
+                require(value > 0);
+                field = value;
+            }
+        }
         // Costruttore principale
         public Vehicle(string plate, int actualKms, double dailyRate, double fuelPercentage)
         {
@@ -103,7 +115,7 @@ namespace BlaisePascal.Esercizio1.Domain
         // Funzione per il rifornmento
         public void refill(int toPercentage) {
             require(FuelPercentage < toPercentage);
-            require(toPercentage >= 0 && toPercentage<=100);
+            require(toPercentage >= 0 && toPercentage<=MaxFuelPercentage);
             FuelPercentage = toPercentage;
         }
     }
